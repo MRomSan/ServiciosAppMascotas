@@ -39,7 +39,8 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellidos, String telefono, String username, String password, boolean alta) {
+    public Usuario(Long id_usuario, String nombre, String apellidos, String telefono, String username, String password, boolean alta) {
+        this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;

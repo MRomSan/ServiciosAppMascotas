@@ -28,7 +28,7 @@ public class UsuarioController {
     }
     
     @GetMapping("/empleado/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Usuario empleadoById(@PathVariable("id") Long id) {
         return usuService.devuelveEmpleado(id);
     }

@@ -4,11 +4,11 @@ import es.itm.model.Venta;
 import es.itm.service.VentaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,26 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class VentaController {
     @Autowired
-    private VentaService ventaService;
+    VentaService ventaService;
     
     @GetMapping("/ventas")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Venta> listarVentas() {
         return ventaService.listadoVentas();
     }
     
     @GetMapping("/venta/{id}")
-    public Venta ventaById(@PathVariable("id") int id) {
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public Venta ventaById(@PathVariable("id") String id) {
         return ventaService.devuelveVenta(id);
     }
     
     @PostMapping("/venta")
-    public Venta crearNuevaVenta(@RequestBody Venta v) {
-        return ventaService.nuevaVenta(v);
+    @PreAuthorize("hasRole('USER')")
+    public Venta guardarNuevaVenta(@RequestBody Venta v) {
+        return ventaService.guardarNuevaVenta(v);
     }
     
-    @PutMapping("/venta/{id}")
-    public Venta modificarVenta(@RequestBody Venta v, @PathVariable("id") int id) {
-        return ventaService.modificarVenta(v);
+    @GetMapping("/venta/nextID")
+    @PreAuthorize("hasRole('USER')")
+    public Venta crearIDVenta() {
+        return ventaService.devuelveIDVenta();
     }
-    
 }

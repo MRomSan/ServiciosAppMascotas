@@ -17,7 +17,7 @@ public class Venta implements Serializable{
     private String id_venta;
     @ManyToOne(optional=false)
     @JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
-    private Usuario empleado;
+    private Usuario usuario;
     @ManyToOne(optional=false)
     @JoinColumn(name="dni_cliente", referencedColumnName="dni")
     private Cliente cliente;
@@ -27,8 +27,9 @@ public class Venta implements Serializable{
     public Venta() {
     }
 
-    public Venta(Usuario empleado, Cliente cliente, String fecha) {
-        this.empleado = empleado;
+    public Venta(String id_venta, Usuario usuario, Cliente cliente, String fecha) {
+        this.id_venta = id_venta;
+        this.usuario = usuario;
         this.cliente = cliente;
         this.fecha = fecha;
     }
@@ -41,12 +42,12 @@ public class Venta implements Serializable{
         this.id_venta = id_venta;
     }
 
-    public Usuario getEmpleado() {
-        return empleado;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setEmpleado(Usuario empleado) {
-        this.empleado = empleado;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Cliente getCliente() {

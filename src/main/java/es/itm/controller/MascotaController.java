@@ -45,9 +45,21 @@ public class MascotaController {
     
     @PutMapping("/mascota/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Mascota modificarEmpleado(@RequestBody Mascota m, @PathVariable("id") int id) {
+    public Mascota modificarMascota(@RequestBody Mascota m, @PathVariable("id") int id) {
         m.setId_mascota(id);
         return mascService.modificarMascota(m);
+    }
+    
+    @PutMapping("/mascotas/{ids}")
+    @PreAuthorize("hasRole('USER')")
+    public List<Mascota> modificarMascota(@RequestBody Mascota[] m, @PathVariable("ids") int[] ids) {
+        List<Mascota> mascotas = new ArrayList<>();
+        for(int i = 0; i<m.length; i++){
+            Mascota masc = m[i];
+            masc.setId_mascota(ids[i]);
+            mascotas.add(mascService.agregarVentaAMascota(masc));
+        }
+        return mascotas;
     }
     
     @DeleteMapping("/mascota/{ids}")

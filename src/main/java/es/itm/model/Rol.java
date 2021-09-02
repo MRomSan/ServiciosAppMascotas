@@ -11,34 +11,38 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Rol implements Serializable {
-	@Id
-        @Column(nullable=false, unique=true)
-	private Integer id;
+    @Id
+    @Column(nullable=false, unique=true)
+    private Integer id;
 
-	@Enumerated(EnumType.STRING)
-	@Column(length = 20)
-	private ERol nombre;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ERol nombre;
 
-	public Rol() {
-	}
+    public Rol() {
+    }
 
-	public Rol(ERol nombre) {
-		this.nombre = nombre;
-	}
+    public Rol(ERol nombre) {
+        this.nombre = nombre;
+    }
+    
+    public Rol(String nombre) {
+        this.nombre = ERol.valueOf(nombre);
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public ERol getNombre() {
-		return nombre;
-	}
+    public ERol getNombre() {
+        return nombre;
+    }
 
-	public void setNombre(ERol nombre) {
-		this.nombre = nombre;
-	}
+    public void setNombre(ERol nombre) {
+        this.nombre = nombre;
+    }
 }

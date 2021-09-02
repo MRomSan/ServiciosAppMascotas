@@ -8,6 +8,7 @@ public interface MascotaService {
     Mascota devuelveMascota(int id);
     Mascota nuevaMascota(Mascota m);
     Mascota modificarMascota(Mascota m);
+    Mascota agregarVentaAMascota(Mascota m);
     Mascota eliminarMascota(int id);
     
     List<Mascota> listadoMascotasNoVendidas();
