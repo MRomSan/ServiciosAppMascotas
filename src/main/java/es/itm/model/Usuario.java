@@ -1,5 +1,6 @@
 package es.itm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +27,7 @@ public class Usuario implements Serializable {
     private String telefono;
     @Column(columnDefinition="CHAR(6)", nullable=false, unique=true)
     private String username;
+    @JsonIgnore
     @Column(columnDefinition="CHAR(120)", nullable=false)
     private String password;
     @Column(nullable=false)

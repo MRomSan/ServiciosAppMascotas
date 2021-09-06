@@ -36,8 +36,8 @@ public class MascotaServiceImpl implements MascotaService{
     }
     
     @Override
-    public Mascota agregarVentaAMascota(Mascota m) {
-        m.setVenta(ventaRep.findById(m.getVenta().getId_venta()));
+    public Mascota agregarVentaAMascota(Mascota m, String id_venta) {
+        m.setVenta(ventaRep.findById(id_venta));
         return mascRep.save(m);
     }
 
@@ -54,5 +54,9 @@ public class MascotaServiceImpl implements MascotaService{
     public List<Mascota> listadoMascotasNoVendidas() {
         return mascRep.findAllNotSold();
     }
-
+    
+    @Override
+    public List<Mascota> listadoMascotasVendidas() {
+        return mascRep.findAllSold();
+    }
 }

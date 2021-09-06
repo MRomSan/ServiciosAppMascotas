@@ -26,11 +26,11 @@ public class VentaController {
         return ventaService.listadoVentas();
     }
     
-    @GetMapping("/venta/{id}")
+    /*@GetMapping("/venta/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Venta ventaById(@PathVariable("id") String id) {
         return ventaService.devuelveVenta(id);
-    }
+    }*/
     
     @PostMapping("/venta")
     @PreAuthorize("hasRole('USER')")

@@ -33,9 +33,10 @@ public class UsuarioController {
         return usuService.devuelveEmpleado(id);
     }
     
-    @PostMapping("/empleado")
+    @PostMapping("/empleado/{pass}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Usuario crearNuevoEmpleado(@RequestBody Usuario e) {
+    public Usuario crearNuevoEmpleado(@PathVariable("pass") String pass, @RequestBody Usuario e) {
+        e.setPassword(pass);
         return usuService.nuevoEmpleado(e);
     }
     
@@ -43,6 +44,7 @@ public class UsuarioController {
     @PreAuthorize("hasRole('ADMIN')")
     public Usuario modificarEmpleado(@RequestBody Usuario e, @PathVariable("id") Long id) {
         e.setId_usuario(id);
+        e.setPassword(usuService.devuelveEmpleado(id).getPassword());
         return usuService.modificarEmpleado(e);
     }
     

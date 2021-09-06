@@ -25,13 +25,11 @@ public class Cliente implements Serializable{
     private String correo;
     @Column(columnDefinition="CHAR(9)", nullable=false)
     private String telefono;
-    @Column(columnDefinition="BIT DEFAULT true")
-    private boolean publicidad;
 
     public Cliente() {
     }
 
-    public Cliente(String dni, String nombre, String apellidos, String direccion, String localidad, String correo, String telefono, boolean publicidad) {
+    public Cliente(String dni, String nombre, String apellidos, String direccion, String localidad, String correo, String telefono) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -39,7 +37,6 @@ public class Cliente implements Serializable{
         this.localidad = localidad;
         this.correo = correo;
         this.telefono = telefono;
-        this.publicidad = publicidad;
     }
     
     public String getDni() {
@@ -96,14 +93,6 @@ public class Cliente implements Serializable{
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public boolean isPublicidad() {
-        return publicidad;
-    }
-
-    public void setPublicidad(boolean publicidad) {
-        this.publicidad = publicidad;
     }
 
 }

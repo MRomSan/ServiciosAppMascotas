@@ -14,4 +14,6 @@ public interface MascotaRepository extends Repository<Mascota, Integer>{
     @Query("select m from Mascota m where m.venta is null")
     List<Mascota> findAllNotSold();
     
+    @Query("select m from Mascota m where m.venta is not null")
+    List<Mascota> findAllSold();
 }

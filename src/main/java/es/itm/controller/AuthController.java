@@ -1,8 +1,6 @@
 package es.itm.controller;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -20,9 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//import es.itm.model.ERol;
-//import es.itm.model.Rol;
-//import es.itm.model.Usuario;
 import es.itm.payload.request.LoginRequest;
 import es.itm.payload.response.JwtResponse;
 import es.itm.payload.response.MessageResponse;
@@ -31,7 +26,7 @@ import es.itm.dao.UsuarioRepository;
 import es.itm.security.jwt.JwtUtils;
 import es.itm.security.service.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins="http://localhost:4200", maxAge=3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

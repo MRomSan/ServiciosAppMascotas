@@ -34,11 +34,11 @@ public class TipoController {
         return tipoService.listadoTiposEnUso();
     }
     
-    @GetMapping("/tipo/{id}")
+    /*@GetMapping("/tipo/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public Tipo tipoById(@PathVariable("id") int id) {
         return tipoService.devuelveTipo(id);
-    }
+    }*/
     
     @PostMapping("/tipo")
     @PreAuthorize("hasRole('ADMIN')")

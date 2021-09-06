@@ -22,7 +22,7 @@ public class ClienteController {
     ClienteService cliService;
     
     @GetMapping("/clientes")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Cliente> listarClientes() {
         return cliService.listadoClientes();
     }

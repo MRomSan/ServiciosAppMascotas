@@ -52,12 +52,14 @@ public class MascotaController {
     
     @PutMapping("/mascotas/{ids}")
     @PreAuthorize("hasRole('USER')")
-    public List<Mascota> modificarMascota(@RequestBody Mascota[] m, @PathVariable("ids") int[] ids) {
+    public List<Mascota> idVentaEnMascotas(@RequestBody Mascota[] m, @PathVariable("ids") int[] ids) {
         List<Mascota> mascotas = new ArrayList<>();
         for(int i = 0; i<m.length; i++){
             Mascota masc = m[i];
+            String id_venta = masc.getVenta().getId_venta();
+            masc = mascService.devuelveMascota(masc.getId_mascota());
             masc.setId_mascota(ids[i]);
-            mascotas.add(mascService.agregarVentaAMascota(masc));
+            mascotas.add(mascService.agregarVentaAMascota(masc, id_venta));
         }
         return mascotas;
     }
@@ -78,6 +80,12 @@ public class MascotaController {
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Mascota> listarMascotasNoVendidas() {
         return mascService.listadoMascotasNoVendidas();
+    }
+    
+    @GetMapping("/mascotas/vendidas")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public List<Mascota> listarMascotasVendidas() {
+        return mascService.listadoMascotasVendidas();
     }
     
 }
